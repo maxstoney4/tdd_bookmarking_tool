@@ -65,4 +65,3 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
 * https://github.com/pitest/pitest-junit5-plugin
   - https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
     - required to work with JUnit5
-
