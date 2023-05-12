@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookmarkTest {
     @Test
@@ -40,9 +42,28 @@ public class BookmarkTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void testAddKeyword() throws MalformedURLException {
+    public void testAddKeywords() throws MalformedURLException {
         //Arrange
+
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+
         String keyword="test";
+        List <String> expected = new ArrayList<>();
+        expected.add(keyword);
+
+        //Act
+        bookmark.addKeyword(keyword);
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getKeywords());
+    }
+    /*
+    @Test
+    public void testAddKeywordWithLessThanThreeCharacters() throws MalformedURLException {
+        //Arrange
+        String keyword="te";
         String url = "https://google.com";
         Bookmark bookmark = new Bookmark(url);
         String expected = "test";
@@ -53,17 +74,20 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, bookmark.getKeyword());
     }
+     */
     @Test
-    public void testGetKeyword() throws MalformedURLException {
+    public void testGetKeywords() throws MalformedURLException {
         //Arrange
         String keyword="test";
+        List <String> expected = new ArrayList<>();
+        expected.add(keyword);
+
         String url = "https://google.com";
         Bookmark bookmark = new Bookmark(url);
-        String expected = "test";
-        bookmark.setKeyword(keyword);
+        bookmark.addKeyword(keyword);
 
         //Act
-        String actual = bookmark.getKeyword();
+        List<String> actual = bookmark.getKeywords();
 
         //Assert
         Assertions.assertEquals(expected, actual);
