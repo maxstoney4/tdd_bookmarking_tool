@@ -19,4 +19,14 @@ public class BookMarkTool {
     public void bookmarkURL(String url) throws MalformedURLException {
         this.bookmarks.add(new Bookmark(url));
     }
+
+    public void setKeyword(String url, String keyword) {
+        if (url == null || keyword == null) {
+            throw new IllegalArgumentException();
+        }
+        Bookmark bookmark = this.bookmarks.stream()
+                .filter(x -> x.getURL().toString().equals(url)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No bookmark for this URL"));
+        bookmark.addKeyword(keyword);
+    }
 }
