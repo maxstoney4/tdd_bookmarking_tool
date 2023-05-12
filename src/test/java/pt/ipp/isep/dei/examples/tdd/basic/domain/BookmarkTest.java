@@ -59,22 +59,39 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, bookmark.getKeywords());
     }
-    /*
     @Test
-    public void testAddKeywordWithLessThanThreeCharacters() throws MalformedURLException {
+    public void testAddKeywordsWithKeyWordAlreadyExisting() throws MalformedURLException {
         //Arrange
-        String keyword="te";
+
         String url = "https://google.com";
         Bookmark bookmark = new Bookmark(url);
-        String expected = "test";
+
+
+        String keywordOne="test";
+        String keywordTwo="test2";
+        List <String> expected = new ArrayList<>();
+        expected.add(keywordOne);
+        expected.add(keywordTwo);
 
         //Act
-        bookmark.setKeyword(keyword);
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
 
         //Assert
-        Assertions.assertEquals(expected, bookmark.getKeyword());
+        Assertions.assertEquals(expected, bookmark.getKeywords());
     }
-     */
+
+    @Test
+    public void testAddKeywordWithLessThanThreeCharacters() throws MalformedURLException {
+        String url = "https://google.com";
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Bookmark(url).addKeyword("tes");});
+    }
+    @Test
+    public void testAddKeywordWithNullKeyword() throws MalformedURLException {
+        String url = "https://google.com";
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Bookmark(url).addKeyword(null);});
+    }
+
     @Test
     public void testGetKeywords() throws MalformedURLException {
         //Arrange
@@ -85,6 +102,26 @@ public class BookmarkTest {
         String url = "https://google.com";
         Bookmark bookmark = new Bookmark(url);
         bookmark.addKeyword(keyword);
+
+        //Act
+        List<String> actual = bookmark.getKeywords();
+
+        //Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void testGetKeywordsWithTwoKeywords() throws MalformedURLException {
+        //Arrange
+        String keywordOne="test";
+        String keywordTwo="test2";
+        List <String> expected = new ArrayList<>();
+        expected.add(keywordOne);
+        expected.add(keywordTwo);
+
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
 
         //Act
         List<String> actual = bookmark.getKeywords();
