@@ -18,11 +18,12 @@ public class Calculator {
     }
 
     public int subtract(int firstOperand, int secondOperand) {
-        throw new UnsupportedOperationException();
+        Integer.min(firstOperand, secondOperand);
+        return firstOperand - secondOperand;
     }
 
     public int divide(int dividend, int divisor) {
-        throw new UnsupportedOperationException();
+        return dividend / divisor;
     }
 
     public int multiply(int firstOperand, int secondOperand) {

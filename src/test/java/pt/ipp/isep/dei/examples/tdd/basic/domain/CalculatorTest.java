@@ -1,6 +1,12 @@
 package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -94,6 +100,191 @@ public class CalculatorTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureSixMinusZeroEqualsSix() {
+        // Arrange
+        int firsOperand = 6;
+        int secondOperand = 0;
+        int expectedResult = 6;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusSixMinusZeroEqualsSix() {
+        // Arrange
+        int firsOperand = -6;
+        int secondOperand = 0;
+        int expectedResult = -6;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureSixMinusThreeEqualsThree() {
+        // Arrange
+        int firsOperand = 6;
+        int secondOperand = 3;
+        int expectedResult = 3;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureSixMinusMinusThreeEqualsNine() {
+        // Arrange
+        int firsOperand = 6;
+        int secondOperand = -3;
+        int expectedResult = 9;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusSixMinusThreeEqualsMinusNine() {
+        // Arrange
+        int firsOperand = -6;
+        int secondOperand = 3;
+        int expectedResult = -9;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusSixMinusMinusThreeEqualsMinusThree() {
+        // Arrange
+        int firsOperand = -6;
+        int secondOperand = -3;
+        int expectedResult = -3;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureOverfowResultsInException() {
+        // Arrange
+        int firsOperand = -2147483648;
+        int secondOperand = 10;
+
+        // Act and Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().subtract(firsOperand, secondOperand);
+        });
+    }
+
+    @Test
+    public void ensureTenDividedByTwoEquals5() {
+        // Arrange
+        int firsOperand = 10;
+        int secondOperand = 2;
+        int expectedResult = 5;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureTenDividedByThreeEquals3() {
+        // Arrange
+        int firsOperand = 10;
+        int secondOperand = 3;
+        int expectedResult = 3;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureTenDividedByMinusTwoEqualsMinusFive() {
+        // Arrange
+        int firsOperand = 10;
+        int secondOperand = -2;
+        int expectedResult = -5;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureTenDividedByMinusThreeEqualsMinusThree() {
+        // Arrange
+        int firsOperand = 10;
+        int secondOperand = -3;
+        int expectedResult = -3;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusTenDividedByTwoEqualsMinusFive() {
+        // Arrange
+        int firsOperand = -10;
+        int secondOperand = -2;
+        int expectedResult = -5;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusTenDividedByThreeEqualsMinusTwo() {
+        // Arrange
+        int firsOperand = -10;
+        int secondOperand = -2;
+        int expectedResult = 5;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureDivisionByZeroResultsInIllegalOperationException() {
+        //TODO
     }
 }
 

@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,netbeans,intellij
 
+.idea/
+
 ### Eclipse ###
 
 .metadata

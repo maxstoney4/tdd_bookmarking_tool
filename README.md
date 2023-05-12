@@ -66,3 +66,31 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
   - https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
     - required to work with JUnit5
      
+
+
+
+## Testcase Design
+
+* Substraction
+
+  - 6 - 0 = 6
+  - -6 -0 = -6
+  - 6 - 3 = 3
+  - 6 - (-3) = 9
+  - -6 - 3 = -9
+  - -6 - (-3) = -3
+  - 2147483648 - 10 = overflow exception
+  - 2147483648 - (2147483668) = overflow exception
+  
+* Division
+
+  - 6 / 0 = Illegal Operation Exception
+  - 10 / 2 = 5
+  - 10 / 3 = 3
+  - 10 / -2 = -5
+  - -10 / 2 = -5
+  - -10 / -2 = 5
+  - 10 / 100 = 0
+  
+* Multiplication
+* Factoria
