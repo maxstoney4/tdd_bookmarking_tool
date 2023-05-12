@@ -18,7 +18,6 @@ public class Calculator {
     }
 
     public int subtract(int firstOperand, int secondOperand) {
-        Integer.min(firstOperand, secondOperand);
         return firstOperand - secondOperand;
     }
 
