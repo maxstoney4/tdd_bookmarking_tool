@@ -21,6 +21,11 @@ public class Bookmark {
         return keywords;
     }
     public void addKeyword(String keyword){
-        this.keywords.add(keyword);
+
+        if (keyword.length()>3){
+            this.keywords.add(keyword);
+        } else {
+            throw new IllegalArgumentException("keyword too short");
+        }
     }
 }

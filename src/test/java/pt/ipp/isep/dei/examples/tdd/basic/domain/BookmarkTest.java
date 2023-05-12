@@ -59,22 +59,13 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, bookmark.getKeywords());
     }
-    /*
+
     @Test
     public void testAddKeywordWithLessThanThreeCharacters() throws MalformedURLException {
-        //Arrange
-        String keyword="te";
         String url = "https://google.com";
-        Bookmark bookmark = new Bookmark(url);
-        String expected = "test";
-
-        //Act
-        bookmark.setKeyword(keyword);
-
-        //Assert
-        Assertions.assertEquals(expected, bookmark.getKeyword());
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Bookmark(url).addKeyword("tes");});
     }
-     */
+
     @Test
     public void testGetKeywords() throws MalformedURLException {
         //Arrange
