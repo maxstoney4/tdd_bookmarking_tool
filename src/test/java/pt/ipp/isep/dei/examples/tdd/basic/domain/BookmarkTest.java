@@ -65,6 +65,11 @@ public class BookmarkTest {
         String url = "https://google.com";
         Assertions.assertThrows(IllegalArgumentException.class, () ->{new Bookmark(url).addKeyword("tes");});
     }
+    @Test
+    public void testAddKeywordWithNullKeyword() throws MalformedURLException {
+        String url = "https://google.com";
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Bookmark(url).addKeyword(null);});
+    }
 
     @Test
     public void testGetKeywords() throws MalformedURLException {

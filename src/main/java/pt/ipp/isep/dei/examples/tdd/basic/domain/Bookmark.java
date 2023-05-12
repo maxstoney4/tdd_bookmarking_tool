@@ -21,11 +21,14 @@ public class Bookmark {
         return keywords;
     }
     public void addKeyword(String keyword){
-
-        if (keyword.length()>3){
-            this.keywords.add(keyword);
+        if (keyword!=null){
+            if (keyword.length()>3){
+                this.keywords.add(keyword);
+            } else {
+                throw new IllegalArgumentException("keyword too short");
+            }
         } else {
-            throw new IllegalArgumentException("keyword too short");
+            throw new IllegalArgumentException("keyword is null");
         }
     }
 }
