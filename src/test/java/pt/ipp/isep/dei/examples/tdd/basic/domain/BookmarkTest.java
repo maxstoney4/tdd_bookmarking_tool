@@ -109,4 +109,24 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void testGetKeywordsWithTwoKeywords() throws MalformedURLException {
+        //Arrange
+        String keywordOne="test";
+        String keywordTwo="test2";
+        List <String> expected = new ArrayList<>();
+        expected.add(keywordOne);
+        expected.add(keywordTwo);
+
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+
+        //Act
+        List<String> actual = bookmark.getKeywords();
+
+        //Assert
+        Assertions.assertEquals(expected, actual);
+    }
 }
