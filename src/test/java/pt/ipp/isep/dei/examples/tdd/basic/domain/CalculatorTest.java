@@ -293,6 +293,96 @@ public class CalculatorTest {
             new Calculator().divide(firsOperand, secondOperand);
         });
     }
+    @Test
+    public void ensureFactorialFiveIsOnehundrertwenty() {
+        //HACK: for demonstration purposes only
+        System.out.println("\t\tExecuting " + new Object() {
+        }.getClass().getEnclosingMethod().getName() + " Test");
+
+        // Arrange
+        int firsOperand = 5;
+
+        int expectedResult = 120;
+        int result = 3;
+
+        // Act
+        result = new Calculator().factorial(firsOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    public void ensureFactorialNegativeFiveIsNegativeOnehundrertwenty() {
+        //HACK: for demonstration purposes only
+        System.out.println("\t\tExecuting " + new Object() {
+        }.getClass().getEnclosingMethod().getName() + " Test");
+
+        // Arrange
+        int firsOperand = -5;
+
+        int expectedResult = -120;
+        int result = 3;
+
+        // Act
+        result = new Calculator().factorial(firsOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    public void ensureFactorialZeroIsOne() {
+        //HACK: for demonstration purposes only
+        System.out.println("\t\tExecuting " + new Object() {
+        }.getClass().getEnclosingMethod().getName() + " Test");
+
+        // Arrange
+        int firsOperand = 0;
+
+        int expectedResult = 1;
+        int result = 3;
+
+        // Act
+        result = new Calculator().factorial(firsOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    public void ensureFactorialOneIsOne() {
+        //HACK: for demonstration purposes only
+        System.out.println("\t\tExecuting " + new Object() {
+        }.getClass().getEnclosingMethod().getName() + " Test");
+
+        // Arrange
+        int firsOperand = 1;
+
+        int expectedResult = 1;
+        int result = 3;
+
+        // Act
+        result = new Calculator().factorial(firsOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    public void ensureFactorialNegativeOneIsNegativeOne() {
+        //HACK: for demonstration purposes only
+        System.out.println("\t\tExecuting " + new Object() {
+        }.getClass().getEnclosingMethod().getName() + " Test");
+
+        // Arrange
+        int firsOperand = -1;
+
+        int expectedResult = -1;
+        int result = 3;
+
+        // Act
+        result = new Calculator().factorial(firsOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
 
 

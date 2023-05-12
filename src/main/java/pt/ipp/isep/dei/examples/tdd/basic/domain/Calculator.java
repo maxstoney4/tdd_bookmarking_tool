@@ -34,6 +34,19 @@ public class Calculator {
     }
 
     public int factorial(int firstOperand) {
-        throw new UnsupportedOperationException();
+        int result=1;
+        boolean isNegative=false;
+        if (firstOperand<0){
+            isNegative=true;
+            firstOperand *= -1;
+        }
+        for (int i = 1; i <= firstOperand; i++) {
+            result *= i;
+        }
+        if (isNegative){
+            result *= -1;
+        }
+
+        return result;
     }
 }
