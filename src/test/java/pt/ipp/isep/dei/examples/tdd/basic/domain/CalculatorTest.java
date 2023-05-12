@@ -187,7 +187,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void ensureOverfowResultsInException() {
+    public void ensureOverflowResultsInExceptionForSubstraction() {
         // Arrange
         int firsOperand = -2147483648;
         int secondOperand = 10;
@@ -196,6 +196,46 @@ public class CalculatorTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Calculator().subtract(firsOperand, secondOperand);
         });
+    }
+
+    @Test
+    public void ensureOverflowResultsInExceptionForSubstraction2() {
+        // Arrange
+        int firsOperand = 2147483646;
+        int secondOperand = -2;
+
+        // Act and Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().subtract(firsOperand, secondOperand);
+        });
+    }
+
+    @Test
+    public void ensureIntegerMinvalueMinusZeroEqualsIntegerMinValue() {
+        // Arrange
+        int firsOperand = Integer.MIN_VALUE;
+        int secondOperand = 0;
+        int expectedResult = Integer.MIN_VALUE;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureIntegerMaxvalueMinusZeroEqualsIntegerMaxValue() {
+        // Arrange
+        int firsOperand = Integer.MAX_VALUE;
+        int secondOperand = 0;
+        int expectedResult = Integer.MAX_VALUE;
+
+        // Act
+        int result = new Calculator().subtract(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -293,6 +333,7 @@ public class CalculatorTest {
             new Calculator().divide(firsOperand, secondOperand);
         });
     }
+
     @Test
     public void ensureFactorialFiveIsOnehundrertwenty() {
         //HACK: for demonstration purposes only
@@ -311,10 +352,14 @@ public class CalculatorTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void ensureFactorialNegativeFive() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Calculator().factorial(-5);});
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().factorial(-5);
+        });
     }
+
     @Test
     public void ensureFactorialZeroIsOne() {
         //HACK: for demonstration purposes only
@@ -333,6 +378,7 @@ public class CalculatorTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void ensureFactorialOneIsOne() {
         //HACK: for demonstration purposes only
@@ -351,10 +397,13 @@ public class CalculatorTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void ensureFactorialNegativeOne() {
-       Assertions.assertThrows(IllegalArgumentException.class, () ->{new Calculator().factorial(-1);});
-        }
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().factorial(-1);
+        });
+    }
 
     @Test
     public void ensureFiveTimesFiveEqualsTwentyFive() {
@@ -408,6 +457,46 @@ public class CalculatorTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Calculator().multiply(firsOperand, secondOperand);
         });
+    }
+
+    @Test
+    public void ensureOverflowResultsInIllegalArgumentException2() {
+        // Arrange
+        int firsOperand = -2147483647;
+        int secondOperand = 2;
+
+        // Act and Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().multiply(firsOperand, secondOperand);
+        });
+    }
+
+    @Test
+    public void ensureMaxValueTimesZeroResultsInMaxValue() {
+        // Arrange
+        int firsOperand = Integer.MAX_VALUE;
+        int secondOperand = 1;
+        int expectedResult = Integer.MAX_VALUE;
+
+        // Act
+        int result = new Calculator().multiply(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinValueTimesZeroResultsInMinValue() {
+        // Arrange
+        int firsOperand = Integer.MIN_VALUE;
+        int secondOperand = 1;
+        int expectedResult = Integer.MIN_VALUE;
+
+        // Act
+        int result = new Calculator().multiply(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
 }
