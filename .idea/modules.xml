@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tdd-basic-example.iml" filepath="$PROJECT_DIR$/tdd-basic-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tdd_bookmarking_tool.iml" filepath="$PROJECT_DIR$/.idea/tdd_bookmarking_tool.iml" />
     </modules>
   </component>
 </project>

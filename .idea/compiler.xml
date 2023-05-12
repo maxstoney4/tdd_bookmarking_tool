@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tdd_bookmarking_tool" />
         <module name="tdd-basic-example" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="tdd-basic-example" target="1.8" />
+      <module name="tdd_bookmarking_tool" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="tdd-basic-example" options="-Xlint:all" />
+      <module name="tdd_bookmarking_tool" options="-Xlint:all" />
     </option>
   </component>
 </project>
