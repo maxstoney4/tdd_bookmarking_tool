@@ -129,4 +129,32 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void testIncrementRating() throws MalformedURLException {
+        //Arrange
+
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+        int expected = 2;
+
+        //Act
+        bookmark.incrementRating();
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getRating());
+    }
+    @Test
+    public void testGetRating() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+        int expected = 1;
+
+        //Act
+        int actual = bookmark.getRating();
+
+        //Assert
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

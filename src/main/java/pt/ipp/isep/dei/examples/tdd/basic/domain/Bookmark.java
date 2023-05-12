@@ -9,6 +9,7 @@ public class Bookmark {
 
     private URL url;
     private List<String> keywords = new ArrayList<>();
+    private int rating = 1;
 
     public Bookmark(String url) throws MalformedURLException {
         this.url = new URL(url);
@@ -30,5 +31,11 @@ public class Bookmark {
         } else {
             throw new IllegalArgumentException("keyword is null");
         }
+    }
+    public void incrementRating(){
+        return;
+    }
+    public int getRating(){
+        return rating;
     }
 }
