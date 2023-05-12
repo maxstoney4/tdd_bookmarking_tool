@@ -383,6 +383,61 @@ public class CalculatorTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void ensureFiveTimesFiveEqualsTwentyFive() {
+        // Arrange
+        int firsOperand = 5;
+        int secondOperand = 5;
+        int expectedResult = 25;
+
+        // Act
+        int result = new Calculator().multiply(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureFiveTimesMinusFiveEqualsMinusTwentyFive() {
+        // Arrange
+        int firsOperand = 5;
+        int secondOperand = -5;
+        int expectedResult = -25;
+
+        // Act
+        int result = new Calculator().multiply(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureMinusFiveTimesMinusFiveEqualsTwentyFive() {
+        // Arrange
+        int firsOperand = -5;
+        int secondOperand = -5;
+        int expectedResult = 25;
+
+        // Act
+        int result = new Calculator().multiply(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureOverflowResultsInIllegalArgumentException() {
+        // Arrange
+        int firsOperand = 2147483647;
+        int secondOperand = 2;
+
+        // Act and Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Calculator().multiply(firsOperand, secondOperand);
+        });
+    }
+
 }
 
 
