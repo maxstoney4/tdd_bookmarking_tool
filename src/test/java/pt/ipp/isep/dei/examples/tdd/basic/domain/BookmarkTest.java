@@ -59,6 +59,27 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, bookmark.getKeywords());
     }
+    @Test
+    public void testAddKeywordsWithKeyWordAlreadyExisting() throws MalformedURLException {
+        //Arrange
+
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+
+        String keywordOne="test";
+        String keywordTwo="test2";
+        List <String> expected = new ArrayList<>();
+        expected.add(keywordOne);
+        expected.add(keywordTwo);
+
+        //Act
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getKeywords());
+    }
 
     @Test
     public void testAddKeywordWithLessThanThreeCharacters() throws MalformedURLException {
