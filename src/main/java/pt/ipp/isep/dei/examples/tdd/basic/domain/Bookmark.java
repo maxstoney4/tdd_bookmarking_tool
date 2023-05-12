@@ -33,7 +33,7 @@ public class Bookmark {
         }
     }
     public void incrementRating(){
-        return;
+        rating += rating;
     }
     public int getRating(){
         return rating;
