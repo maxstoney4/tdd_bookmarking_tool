@@ -255,21 +255,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void ensureMinusTenDividedByTwoEqualsMinusFive() {
-        // Arrange
-        int firsOperand = -10;
-        int secondOperand = -2;
-        int expectedResult = -5;
-
-        // Act
-        int result = new Calculator().divide(firsOperand, secondOperand);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void ensureMinusTenDividedByThreeEqualsMinusTwo() {
+    public void ensureMinusTenDividedByMinusTwoEqualsFive() {
         // Arrange
         int firsOperand = -10;
         int secondOperand = -2;
@@ -283,8 +269,29 @@ public class CalculatorTest {
     }
 
     @Test
-    public void ensureDivisionByZeroResultsInIllegalOperationException() {
-        //TODO
+    public void ensureMinusTenDividedByThreeEqualsMinusThree() {
+        // Arrange
+        int firsOperand = -10;
+        int secondOperand = 3;
+        int expectedResult = -3;
+
+        // Act
+        int result = new Calculator().divide(firsOperand, secondOperand);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void ensureDivisonByZeroResultsInArithmeticException() {
+        // Arrange
+        int firsOperand = 10;
+        int secondOperand = 0;
+
+        // Act and Assert
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            new Calculator().divide(firsOperand, secondOperand);
+        });
     }
 }
 

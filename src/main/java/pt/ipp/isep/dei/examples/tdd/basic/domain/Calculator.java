@@ -18,6 +18,10 @@ public class Calculator {
     }
 
     public int subtract(int firstOperand, int secondOperand) {
+        long result = (long) firstOperand - (long) secondOperand;
+        if (result < Integer.MIN_VALUE || result > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException();
+        }
         return firstOperand - secondOperand;
     }
 
