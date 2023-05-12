@@ -312,7 +312,7 @@ public class CalculatorTest {
         assertEquals(expectedResult, result);
     }
     @Test
-    public void ensureFactorialNegativeFiveIsNegativeOnehundrertwenty() {
+    public void ensureFactorialNegativeFive() {
         //HACK: for demonstration purposes only
         System.out.println("\t\tExecuting " + new Object() {
         }.getClass().getEnclosingMethod().getName() + " Test");
@@ -320,14 +320,12 @@ public class CalculatorTest {
         // Arrange
         int firsOperand = -5;
 
-        int expectedResult = -120;
-        int result = 3;
+        try {
+            new Calculator().factorial(firsOperand);
+            fail("test");
+        } catch (IllegalArgumentException expected) {
 
-        // Act
-        result = new Calculator().factorial(firsOperand);
-
-        // Assert
-        assertEquals(expectedResult, result);
+        }
     }
     @Test
     public void ensureFactorialZeroIsOne() {
@@ -366,7 +364,7 @@ public class CalculatorTest {
         assertEquals(expectedResult, result);
     }
     @Test
-    public void ensureFactorialNegativeOneIsNegativeOne() {
+    public void ensureFactorialNegativeOne() {
         //HACK: for demonstration purposes only
         System.out.println("\t\tExecuting " + new Object() {
         }.getClass().getEnclosingMethod().getName() + " Test");
@@ -374,15 +372,13 @@ public class CalculatorTest {
         // Arrange
         int firsOperand = -1;
 
-        int expectedResult = -1;
-        int result = 3;
+            try {
+               new Calculator().factorial(firsOperand);
+                fail("test");
+            } catch (IllegalArgumentException expected) {
 
-        // Act
-        result = new Calculator().factorial(firsOperand);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
+            }
+        }
 
     @Test
     public void ensureFiveTimesFiveEqualsTwentyFive() {
