@@ -313,19 +313,7 @@ public class CalculatorTest {
     }
     @Test
     public void ensureFactorialNegativeFive() {
-        //HACK: for demonstration purposes only
-        System.out.println("\t\tExecuting " + new Object() {
-        }.getClass().getEnclosingMethod().getName() + " Test");
-
-        // Arrange
-        int firsOperand = -5;
-
-        try {
-            new Calculator().factorial(firsOperand);
-            fail("test");
-        } catch (IllegalArgumentException expected) {
-
-        }
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{new Calculator().factorial(-5);});
     }
     @Test
     public void ensureFactorialZeroIsOne() {
@@ -365,19 +353,7 @@ public class CalculatorTest {
     }
     @Test
     public void ensureFactorialNegativeOne() {
-        //HACK: for demonstration purposes only
-        System.out.println("\t\tExecuting " + new Object() {
-        }.getClass().getEnclosingMethod().getName() + " Test");
-
-        // Arrange
-        int firsOperand = -1;
-
-            try {
-               new Calculator().factorial(firsOperand);
-                fail("test");
-            } catch (IllegalArgumentException expected) {
-
-            }
+       Assertions.assertThrows(IllegalArgumentException.class, () ->{new Calculator().factorial(-1);});
         }
 
     @Test
