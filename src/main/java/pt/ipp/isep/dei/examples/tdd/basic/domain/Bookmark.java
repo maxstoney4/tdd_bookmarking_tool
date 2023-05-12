@@ -6,6 +6,7 @@ import java.net.URL;
 public class Bookmark {
 
     private URL url;
+    private String keyword;
 
     public Bookmark(String url) throws MalformedURLException {
         this.url = new URL(url);
@@ -13,5 +14,11 @@ public class Bookmark {
 
     public URL getURL() {
         return url;
+    }
+    public String getKeyword(){
+        return keyword;
+    }
+    public void setKeyword(String keyword){
+        this.keyword=keyword;
     }
 }
