@@ -93,4 +93,11 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
   - 10 / 100 = 0
   
 * Multiplication
-* Factoria
+
+  - 5 * 5 = 25
+  - 5 * -5 = -25
+  - -5 * -5 = 25
+  - 5 * 0 = 5
+  - 2147483647 * 2 = IllegalArgumentException
+  - 
+* Factorial
