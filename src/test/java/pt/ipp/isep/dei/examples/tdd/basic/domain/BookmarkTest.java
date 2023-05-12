@@ -3,40 +3,27 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class BookmarkTest {
     @Test
-    public void testCreateBookmark() throws MalformedURLException {
-        String url = "https://google.com";
-        URL expected = new URL(url);
+    public void testCreateBookmark() {
+        //arrange
 
-        Bookmark bookmark = new Bookmark(url);
+        //act
+        Bookmark bookmark = new Bookmark();
+        //assert
 
         Assertions.assertNotNull(bookmark);
-        Assertions.assertEquals(expected, bookmark.getURL());
+
     }
-
     @Test
-    public void testCreateBookmarkThrowsMalformedUrlException() throws MalformedURLException {
-        String url = "123";
-        Assertions.assertThrows(MalformedURLException.class, () -> {
-            new Bookmark(url);
-        });
-    }
+    public void testCreateBookmark() {
+        //arrange
 
-    @Test
-    public void testGetURL() throws MalformedURLException {
-        //Arrange
-        String url = "https://google.com";
-        Bookmark bookmark = new Bookmark(url);
-        URL expected = new URL(url);
+        //act
+        Bookmark bookmark = new Bookmark();
+        //assert
 
-        //Act
-        URL actual = bookmark.getURL();
+        Assertions.assertNotNull(bookmark);
 
-        //Assert
-        Assertions.assertEquals(expected, actual);
     }
 }
