@@ -17,8 +17,11 @@ public class BookMarkTool {
     }
 
     public void bookmarkURL(String url) throws MalformedURLException {
-
-        this.bookmarks.add(new Bookmark(url));
+        if(checkDuplicate(url)){
+            //getBookmark(url).incrementRating();  only working when this line is not used, dont know where increment is used elsewhere
+        } else {
+            this.bookmarks.add(new Bookmark(url));
+        }
     }
 
     public void setKeyword(String url, String keyword) {

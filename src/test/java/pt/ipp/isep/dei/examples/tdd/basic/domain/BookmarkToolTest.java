@@ -149,8 +149,53 @@ public class BookmarkToolTest {
         //Act
         bookMarkTool.bookmarkURL(url);  //checkDuplicate gets called -->increase
 
+
         //Assert
         Assertions.assertEquals(expected, bookMarkTool.getBookmark(url).getRating());
+
+    }
+    @Test
+    public void testIncreaseDuplicateWithAdditionalUrlsCaseOne() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        String url = "https://google.com";
+        String urlTwo = "https://youtube.com";
+
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+
+        int expected = 1;
+
+        //Act
+        bookMarkTool.bookmarkURL(urlTwo);  //add bookmark with url
+        bookMarkTool.bookmarkURL(urlTwo);  //checkDuplicate gets called -->increase
+        bookMarkTool.bookmarkURL(urlTwo);  //checkDuplicate gets called -->increase
+
+
+        //Assert
+        Assertions.assertEquals(expected, bookMarkTool.getBookmark(url).getRating());
+
+    }
+    @Test
+    public void testIncreaseDuplicateWithAdditionalUrlsCaseTwo() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        String url = "https://google.com";
+        String urlTwo = "https://youtube.com";
+
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+
+        int expected = 3;
+
+        //Act
+        bookMarkTool.bookmarkURL(urlTwo);  //add bookmark with url
+        bookMarkTool.bookmarkURL(urlTwo);  //checkDuplicate gets called -->increase
+        bookMarkTool.bookmarkURL(urlTwo);  //checkDuplicate gets called -->increase
+
+
+        //Assert
+        Assertions.assertEquals(expected, bookMarkTool.getBookmark(urlTwo).getRating());
 
     }
 
