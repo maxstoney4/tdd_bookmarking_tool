@@ -134,7 +134,7 @@ public class BookmarkToolTest {
         Assertions.assertEquals(expected, actual);
 
     }
-    /*
+
     @Test
     public void testIncreaseDuplicate() throws MalformedURLException {
         //Arrange
@@ -150,11 +150,10 @@ public class BookmarkToolTest {
         bookMarkTool.bookmarkURL(url);  //checkDuplicate gets called -->increase
 
         //Assert
-        Assertions.assertEquals(expected, bookMarkTool.getBookmark());
+        Assertions.assertEquals(expected, bookMarkTool.getBookmark(url).getRating());
 
     }
 
-     */
     @Test
     public void testGetBookmark() throws MalformedURLException {
         //Arrange
