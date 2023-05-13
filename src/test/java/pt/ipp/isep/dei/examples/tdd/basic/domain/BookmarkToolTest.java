@@ -117,6 +117,23 @@ public class BookmarkToolTest {
             bookMarkTool.setKeyword(url, keyword);
         });
     }
+    @Test
+    public void testCheckDuplicate() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        String url = "https://google.com";
+
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+        Boolean expected = true;
+
+        //Act
+        Boolean actual = bookMarkTool.checkDuplicate(url);
+
+        //Assert
+        Assertions.assertEquals(expected, actual);
+
+    }
 }
 
 
