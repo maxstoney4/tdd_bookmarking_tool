@@ -30,7 +30,13 @@ public class BookMarkTool {
                 .orElseThrow(() -> new IllegalArgumentException("No bookmark for this URL"));
         bookmark.addKeyword(keyword);
     }
-    public Boolean checkDuplicate(String url) {
-        return true;
+    public boolean checkDuplicate(String url) {
+        boolean isDuplicate=false;
+        for (Bookmark bookmark:bookmarks){
+            if (url.equals(bookmark.getURL().toString())){
+                isDuplicate=true;
+            }
+        }
+        return isDuplicate;
     }
 }
