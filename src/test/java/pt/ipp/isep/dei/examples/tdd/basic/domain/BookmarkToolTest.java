@@ -134,6 +134,57 @@ public class BookmarkToolTest {
         Assertions.assertEquals(expected, actual);
 
     }
+    /*
+    @Test
+    public void testIncreaseDuplicate() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        String url = "https://google.com";
+
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+
+        int expected = 2;
+
+        //Act
+        bookMarkTool.bookmarkURL(url);  //checkDuplicate gets called -->increase
+
+        //Assert
+        Assertions.assertEquals(expected, bookMarkTool.getBookmark());
+
+    }
+
+     */
+    @Test
+    public void testGetBookmark() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        String url = "https://google.com";
+
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+
+        Bookmark expected = new Bookmark(url);
+
+        //Act
+        Bookmark actual = bookMarkTool.getBookmark(url);
+
+        //Assert
+        Assertions.assertEquals(expected.getRating(), actual.getRating());
+        Assertions.assertEquals(expected.getURL().toString(), actual.getURL().toString());
+
+    }
+    @Test
+    public void testGetBookmarkWithNonExistingURL() throws MalformedURLException {
+        String url = "https://google.com";
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL(url);  //add bookmark with url
+
+        String testUrl="https://test.com";
+
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+            bookMarkTool.getBookmark(testUrl);});
+    }
 }
 
 

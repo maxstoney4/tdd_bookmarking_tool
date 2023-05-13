@@ -35,8 +35,23 @@ public class BookMarkTool {
         for (Bookmark bookmark:bookmarks){
             if (url.equals(bookmark.getURL().toString())){
                 isDuplicate=true;
+                bookmark.incrementRating();
             }
         }
         return isDuplicate;
+    }
+    public Bookmark getBookmark(String url) throws MalformedURLException {
+        boolean isDuplicate=false;
+        Bookmark test = new Bookmark("https://test.com");
+        for (Bookmark bookmark:bookmarks){
+            if (url.equals(bookmark.getURL().toString())){
+                isDuplicate=true;
+                test=bookmark;
+            }
+        }
+        if (!isDuplicate){
+            throw new IllegalArgumentException("bookmark not existant");
+        }
+        return test;
     }
 }
