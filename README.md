@@ -6,7 +6,7 @@ This project used Java and Maven.
 
 We have to declare the maven-surefire-plugin in the pom.xml file and configure the dependencies of this plugin. 
 
-We have to declare the following dependencies:
+We have to declare the following dependencies: 
 
 The junit-platform-surefire-provider dependency allows us to run tests that use either the “old” JUnit (3 or 4) or JUnit 5.
 
