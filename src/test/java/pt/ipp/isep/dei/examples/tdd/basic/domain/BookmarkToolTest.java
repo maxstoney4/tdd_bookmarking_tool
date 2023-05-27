@@ -320,7 +320,94 @@ public class BookmarkToolTest {
         List<String> resultUrls = result.stream().map(x->x.getURL().toString()).collect(Collectors.toList());
         Assertions.assertEquals(expectedResultUrls, resultUrls);
     }
+
+    @Test
+    public void testFindByKeywordsNullInput(){
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertTrue(bookMarkTool.findByKeywords(null).isEmpty());
+    }
+
+    @Test
+    public void testFindByKeywordsNoBookmarks(){
+        //Arrange
+        List<String> keywordList = new ArrayList<>();
+        String keywoard = "keyword";
+        keywordList.add(keywoard);
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertTrue(bookMarkTool.findByKeywords(keywordList).isEmpty());
+    }
+
+    @Test
+    public void testFindByKeywordsNoKeyWords(){
+        //Arrange
+        List<String> keywordList = new ArrayList<>();
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertTrue(bookMarkTool.findByKeywords(keywordList).isEmpty());
+    }
+
+    @Test
+    public void testFindByKeywordsSingleResult() throws MalformedURLException {
+        //Arrange
+        List<String> keywordList = new ArrayList<>();
+        String keywoard = "relevantKeyword";
+        keywordList.add(keywoard);
+
+        String bookmarkUrl = "https://url1.com";
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL(bookmarkUrl);
+        bookMarkTool.bookmarkURL("https://url2.com");
+        bookMarkTool.bookmarkURL("https://url3.com");
+
+        bookMarkTool.setKeyword(bookmarkUrl, keywoard);
+        bookMarkTool.setKeyword("https://url2.com", "irrelevantKeyword");
+        bookMarkTool.setKeyword("https://url3.com", "irrelevantKeyword2");
+
+        //Act
+        List<Bookmark> result = bookMarkTool.findByKeywords(keywordList);
+
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(bookmarkUrl, result.get(0).getURL().toString());
+    }
+
+    @Test
+    public void testFindByKeywordsMultipleResults() throws MalformedURLException {
+        //Arrange
+        List<String> keywordList = new ArrayList<>();
+        String keywoard1 = "relevantKeyword";
+        String keywoard2 = "relevantKeyword2";
+        keywordList.add(keywoard1);
+        keywordList.add(keywoard2);
+
+        List<String> expectedResultUrls = new ArrayList<>();
+        String bookmarkUrl1 = "https://url1.com";
+        String bookmarkUrl2 = "https://url2.com";
+        String bookmarkUrl3 = "https://url3.com";
+        expectedResultUrls.add(bookmarkUrl1);
+        expectedResultUrls.add(bookmarkUrl2);
+        expectedResultUrls.add(bookmarkUrl3);
+
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL(bookmarkUrl1);
+        bookMarkTool.bookmarkURL(bookmarkUrl2);
+        bookMarkTool.bookmarkURL(bookmarkUrl3);
+
+        bookMarkTool.setKeyword(bookmarkUrl1, keywoard1);
+        bookMarkTool.setKeyword(bookmarkUrl2, keywoard1);
+        bookMarkTool.setKeyword(bookmarkUrl2, "irrelevantKeyword");
+        bookMarkTool.setKeyword(bookmarkUrl3, keywoard2);
+
+        //Act
+        List<Bookmark> result = bookMarkTool.findByKeywords(keywordList);
+
+        Assertions.assertEquals(3, result.size());
+        List<String> resultUrls = result.stream().map(x->x.getURL().toString()).collect(Collectors.toList());
+        Assertions.assertEquals(expectedResultUrls, resultUrls);
+    }
 }
-
-
-

@@ -69,4 +69,15 @@ public class BookMarkTool {
         }
         return this.bookmarks.stream().filter(x -> x.getKeywords().contains(keywoard)).collect(Collectors.toList());
     }
+
+    public List<Bookmark> findByKeywords(List<String> keywordList) {
+        if(keywordList == null || keywordList.size() == 0){
+            return new ArrayList<>();
+        }
+        List<Bookmark> result = new ArrayList<>();
+        for(String keyword : keywordList){
+            result.addAll(findByKeyword(keyword));
+        }
+        return result;
+    }
 }
