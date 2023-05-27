@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookmarkToolTest {
 
@@ -249,6 +250,75 @@ public class BookmarkToolTest {
 
         //Act and Assert
         Assertions.assertEquals(0, bookMarkTool.getAmoutOfSecureUrls());
+    }
+
+    @Test
+    public void testFindByKeywordNullInput(){
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertTrue(bookMarkTool.findByKeyword(null).isEmpty());
+    }
+
+    @Test
+    public void testFindByKeywordNoBookmarks(){
+        //Arrange
+        String keywoard = "keyword";
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertTrue(bookMarkTool.findByKeyword(keywoard).isEmpty());
+    }
+
+    @Test
+    public void testFindByKeywordSingleResult() throws MalformedURLException {
+        //Arrange
+        String bookmarkUrl = "https://url1.com";
+        String keywoard = "relevantKeyword";
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL(bookmarkUrl);
+        bookMarkTool.bookmarkURL("https://url2.com");
+        bookMarkTool.bookmarkURL("https://url3.com");
+
+        bookMarkTool.setKeyword(bookmarkUrl, keywoard);
+        bookMarkTool.setKeyword("https://url2.com", "irrelevantKeyword");
+        bookMarkTool.setKeyword("https://url3.com", "irrelevantKeyword2");
+
+        //Act
+        List<Bookmark> result = bookMarkTool.findByKeyword(keywoard);
+
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(bookmarkUrl, result.get(0).getURL().toString());
+    }
+
+    @Test
+    public void testFindByKeywordMultipleResults() throws MalformedURLException {
+        //Arrange
+        List<String> expectedResultUrls = new ArrayList<>();
+        String bookmarkUrl1 = "https://url1.com";
+        String bookmarkUrl2 = "https://url2.com";
+        expectedResultUrls.add(bookmarkUrl1);
+        expectedResultUrls.add(bookmarkUrl2);
+
+        String keywoard = "relevantKeyword";
+
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL(bookmarkUrl1);
+        bookMarkTool.bookmarkURL(bookmarkUrl2);
+        bookMarkTool.bookmarkURL("https://url3.com");
+
+        bookMarkTool.setKeyword(bookmarkUrl1, keywoard);
+        bookMarkTool.setKeyword(bookmarkUrl2, keywoard);
+        bookMarkTool.setKeyword(bookmarkUrl2, "irrelevantKeyword");
+        bookMarkTool.setKeyword("https://url3.com", "irrelevantKeyword2");
+
+        //Act
+        List<Bookmark> result = bookMarkTool.findByKeyword(keywoard);
+
+        Assertions.assertEquals(2, result.size());
+        List<String> resultUrls = result.stream().map(x->x.getURL().toString()).collect(Collectors.toList());
+        Assertions.assertEquals(expectedResultUrls, resultUrls);
     }
 }
 

@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookMarkTool {
 
@@ -60,5 +61,12 @@ public class BookMarkTool {
 
     public int getAmoutOfSecureUrls() {
         return (int) bookmarks.stream().filter(Bookmark::isUrlSecure).count();
+    }
+
+    public List<Bookmark> findByKeyword(String keywoard) {
+        if(keywoard == null){
+            return new ArrayList<>();
+        }
+        return this.bookmarks.stream().filter(x -> x.getKeywords().contains(keywoard)).collect(Collectors.toList());
     }
 }
