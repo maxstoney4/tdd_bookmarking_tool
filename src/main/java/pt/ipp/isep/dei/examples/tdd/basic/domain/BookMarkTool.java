@@ -57,4 +57,8 @@ public class BookMarkTool {
         }
         return test;
     }
+
+    public int getAmoutOfSecureUrls() {
+        return (int) bookmarks.stream().filter(Bookmark::isUrlSecure).count();
+    }
 }

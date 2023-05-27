@@ -229,6 +229,27 @@ public class BookmarkToolTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->{
             bookMarkTool.getBookmark(testUrl);});
     }
+
+    @Test
+    public void testGetAmountOfSecureUrls() throws MalformedURLException {
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+        bookMarkTool.bookmarkURL("https://secure.com");
+        bookMarkTool.bookmarkURL("https://secure2.com");
+        bookMarkTool.bookmarkURL("http://not-secure.com");
+
+        //Act and Assert
+        Assertions.assertEquals(2, bookMarkTool.getAmoutOfSecureUrls());
+    }
+
+    @Test
+    public void testGetAmountOfSecureUrlsWithNoBookmarks(){
+        //Arrange
+        BookMarkTool bookMarkTool = new BookMarkTool();
+
+        //Act and Assert
+        Assertions.assertEquals(0, bookMarkTool.getAmoutOfSecureUrls());
+    }
 }
 
 

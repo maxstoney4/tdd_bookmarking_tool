@@ -157,4 +157,23 @@ public class BookmarkTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testIsUrlSecureWithSecureUrl() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        //Act and Assert
+        Assertions.assertTrue(bookmark.isUrlSecure());
+    }
+
+    @Test
+    public void testIsUrlSecureWithUnsecureUrl() throws MalformedURLException {
+        //Arrange
+        String url = "http://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        //Act and Assert
+        Assertions.assertFalse(bookmark.isUrlSecure());
+    }
 }

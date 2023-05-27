@@ -38,4 +38,8 @@ public class Bookmark {
     public int getRating(){
         return rating;
     }
+
+    public boolean isUrlSecure() {
+        return this.url.toString().startsWith("https");
+    }
 }
