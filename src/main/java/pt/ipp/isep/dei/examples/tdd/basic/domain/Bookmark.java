@@ -43,6 +43,16 @@ public class Bookmark {
         return this.url.toString().startsWith("https");
     }
     public void removeKeyword(String keyword){
-
+        if (keyword!=null){
+                if (this.keywords.isEmpty()){
+                    throw new IllegalArgumentException("bookmark has no keywords");
+                } else {
+                    if (this.keywords.contains(keyword)){
+                        this.keywords.remove(keyword);
+                    }
+                }
+        } else {
+            throw new IllegalArgumentException("keyword is null");
+        }
     }
 }
