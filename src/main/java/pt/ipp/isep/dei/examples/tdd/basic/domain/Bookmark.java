@@ -50,6 +50,7 @@ public class Bookmark {
                     if (this.keywords.contains(keyword)){
                         this.keywords.remove(keyword);
                     }
+
                 }
         } else {
             throw new IllegalArgumentException("keyword is null");

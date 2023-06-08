@@ -193,4 +193,77 @@ public class BookmarkTest {
         //Assert
         Assertions.assertEquals(expected, bookmark.getKeywords());
     }
+    @Test
+    public void testremoveKeywordWithSeveralExistingKeywordsAndRemoveFirst() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        String keywordOne="test";
+        String keywordTwo="testTwo";
+        String keywordThree="testThree";
+        String keywordFour="Four";
+
+        List <String> expected = new ArrayList<>();
+
+        //expected.add(keywordOne);
+        expected.add(keywordTwo);
+        expected.add(keywordThree);
+        expected.add(keywordFour);
+
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+        bookmark.addKeyword(keywordThree);
+        bookmark.addKeyword(keywordFour);
+        //Act
+
+        bookmark.removeKeyword(keywordOne);
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getKeywords());
+    }
+    @Test
+    public void testremoveKeywordWithSeveralExistingKeywordsAndRemoveLast() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        String keywordOne="test";
+        String keywordTwo="testTwo";
+        String keywordThree="testThree";
+        String keywordFour="Four";
+
+        List <String> expected = new ArrayList<>();
+
+        expected.add(keywordOne);
+        expected.add(keywordTwo);
+        expected.add(keywordThree);
+        //expected.add(keywordFour);
+
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+        bookmark.addKeyword(keywordThree);
+        bookmark.addKeyword(keywordFour);
+        //Act
+
+        bookmark.removeKeyword(keywordFour);
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getKeywords());
+    }
+    @Test
+    public void testremoveKeywordWithNonExistingKeyword() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        String keywordOne="test";
+        String keywordTwo="testTwo";
+
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+
+        //Assert&Act
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{bookmark.removeKeyword("non-existing keyword");});
+    }
 }
