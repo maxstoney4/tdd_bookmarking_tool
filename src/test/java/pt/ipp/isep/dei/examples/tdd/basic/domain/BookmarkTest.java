@@ -266,4 +266,30 @@ public class BookmarkTest {
         //Assert&Act
         Assertions.assertThrows(IllegalArgumentException.class, () ->{bookmark.removeKeyword("non-existing keyword");});
     }
+    @Test
+    public void testremoveKeywordFromEmptyKeywordlist() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        //Assert&Act
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{bookmark.removeKeyword("empty_keyword_list_keyword");});
+    }
+    @Test
+    public void testremoveNullKeyword() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        String keywordOne="test";
+        String keywordTwo="testTwo";
+
+        bookmark.addKeyword(keywordOne);
+        bookmark.addKeyword(keywordTwo);
+
+        String nullKeyword=null;
+
+        //Assert&Act
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{bookmark.removeKeyword(nullKeyword);});
+    }
 }
