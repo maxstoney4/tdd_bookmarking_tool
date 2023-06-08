@@ -42,4 +42,7 @@ public class Bookmark {
     public boolean isUrlSecure() {
         return this.url.toString().startsWith("https");
     }
+    public void removeKeyword(String keyword){
+
+    }
 }

@@ -176,4 +176,21 @@ public class BookmarkTest {
         //Act and Assert
         Assertions.assertFalse(bookmark.isUrlSecure());
     }
+    @Test
+    public void testremoveKeywordWithOneExistingKeyword() throws MalformedURLException {
+        //Arrange
+        String url = "https://google.com";
+        Bookmark bookmark = new Bookmark(url);
+
+        String keywordOne="test";
+
+        List <String> expected = new ArrayList<>();
+
+        //Act
+        bookmark.addKeyword(keywordOne);
+        bookmark.removeKeyword(keywordOne);
+
+        //Assert
+        Assertions.assertEquals(expected, bookmark.getKeywords());
+    }
 }
