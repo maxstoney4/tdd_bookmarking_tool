@@ -80,4 +80,7 @@ public class BookMarkTool {
         }
         return result;
     }
+    public void sortByRating() throws MalformedURLException {
+
+    }
 }

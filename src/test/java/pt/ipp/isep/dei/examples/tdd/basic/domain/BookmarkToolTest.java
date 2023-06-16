@@ -410,4 +410,25 @@ public class BookmarkToolTest {
         List<String> resultUrls = result.stream().map(x->x.getURL().toString()).collect(Collectors.toList());
         Assertions.assertEquals(expectedResultUrls, resultUrls);
     }
+    @Test
+    public void sortBookmarksByRating() throws MalformedURLException {
+        //Arrange
+        List<String> expected = new ArrayList<>();
+        expected.add("https://google.com");
+        expected.add("https://test.com");
+        expected.add("https://youtube.com");
+
+        BookMarkTool actual = new BookMarkTool();
+        actual.bookmarkURL("https://test.com");
+        actual.bookmarkURL("https://youtube.com");
+        actual.bookmarkURL("https://google.com");
+
+        //Act
+        actual.sortByRating();
+
+
+        //Assert
+        List<String> resultUrls = actual.getBookmarks().stream().map(x->x.getURL().toString()).collect(Collectors.toList());
+        Assertions.assertEquals(expected, resultUrls);
+    }
 }
