@@ -411,7 +411,7 @@ public class BookmarkToolTest {
         Assertions.assertEquals(expectedResultUrls, resultUrls);
     }
     @Test
-    public void sortBookmarksByRating() throws MalformedURLException {
+    public void SortBookmarksByRating() throws MalformedURLException {
         //Arrange
         List<String> expected = new ArrayList<>();
         expected.add("https://google.com");
@@ -422,13 +422,81 @@ public class BookmarkToolTest {
         actual.bookmarkURL("https://test.com");
         actual.bookmarkURL("https://youtube.com");
         actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://google.com");
 
         //Act
         actual.sortByRating();
 
+        //Assert
+        List<String> resultUrls = actual.getBookmarks().stream().map(x->x.getURL().toString()).collect(Collectors.toList());
+        Assertions.assertEquals(expected, resultUrls);
+    }
+    @Test
+    public void testSortBookmarksByRatingNumberTwo() throws MalformedURLException {
+        //Arrange
+        List<String> expected = new ArrayList<>();
+        expected.add("https://google.com");
+        expected.add("https://test.com");
+        expected.add("https://youtube.com");
+        expected.add("https://stackoverflow.com");
+
+        BookMarkTool actual = new BookMarkTool();
+        actual.bookmarkURL("https://youtube.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://stackoverflow.com");
+        actual.bookmarkURL("https://test.com");
+        actual.bookmarkURL("https://test.com");
+
+        //Act
+        actual.sortByRating();
 
         //Assert
         List<String> resultUrls = actual.getBookmarks().stream().map(x->x.getURL().toString()).collect(Collectors.toList());
         Assertions.assertEquals(expected, resultUrls);
+    }
+    @Test
+    public void testSortBookmarksByRatingTwoEqualRatingsHigherThanOne() throws MalformedURLException {
+        //Arrange
+        List<String> expected = new ArrayList<>();
+        expected.add("https://google.com");
+        expected.add("https://test.com");
+        expected.add("https://youtube.com");
+        expected.add("https://stackoverflow.com");
+
+        BookMarkTool actual = new BookMarkTool();
+        actual.bookmarkURL("https://youtube.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://google.com");
+        actual.bookmarkURL("https://stackoverflow.com");
+        actual.bookmarkURL("https://test.com");
+        actual.bookmarkURL("https://test.com");
+        actual.bookmarkURL("https://test.com");
+
+
+        //Act
+        actual.sortByRating();
+
+        //Assert
+        List<String> resultUrls = actual.getBookmarks().stream().map(x->x.getURL().toString()).collect(Collectors.toList());
+        Assertions.assertEquals(expected, resultUrls);
+    }
+    @Test
+    public void testSortBookmarksByRatingWithEmptyBookmarksArray() throws MalformedURLException {
+        //Arrange
+        List<String> expected = new ArrayList<>();
+        expected.add("https://google.com");
+        expected.add("https://test.com");
+        expected.add("https://youtube.com");
+        expected.add("https://stackoverflow.com");
+
+        BookMarkTool actual = new BookMarkTool();
+
+        //Act
+
+        //Assert
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{actual.sortByRating();});
     }
 }

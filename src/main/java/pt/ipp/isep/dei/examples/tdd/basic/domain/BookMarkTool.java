@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,6 +83,16 @@ public class BookMarkTool {
         return result;
     }
     public void sortByRating() throws MalformedURLException {
-
+        if (bookmarks.isEmpty()){
+            throw new IllegalArgumentException("No Bookmarks stored");
+        } else {
+            Collections.sort(bookmarks, new Comparator<Bookmark>() {
+                @Override
+                public int compare(Bookmark bookmark1, Bookmark bookmark2) {
+                    // sort by rating
+                    return Integer.compare(bookmark2.getRating(), bookmark1.getRating());
+                }
+            });
+        }
     }
 }
